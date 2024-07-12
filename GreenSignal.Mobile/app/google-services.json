@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "106593570105",
+    "project_id": "greensignal-7858e",
+    "storage_bucket": "greensignal-7858e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:106593570105:android:b2deda8d08630075bd2ce8",
+        "android_client_info": {
+          "package_name": "com.example.greensignal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCx1w-SG0wSQEdCjbEg7kYDkEqAYwVTBfA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

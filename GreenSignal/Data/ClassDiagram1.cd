@@ -1,0 +1,272 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" GroupingSetting="Alphabetical" MembersFormat="NameAndType">
+  <Class Name="Data.Models.Citizen">
+    <Position X="1" Y="14.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AgACBAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\Citizen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data.Models.Code">
+    <Position X="7.75" Y="0.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAABAAAAAAACIAAAAACAAAAAAAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\Code.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Data.Models.Department">
+    <Position X="1.25" Y="7.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAKAAAAACAAAAAAEAIAAAQAQAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Department.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Location" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Data.Models.Incident">
+    <Position X="3.5" Y="13" Width="4" />
+    <TypeIdentifier>
+      <HashCode>QQICEAAkBCBgCAAAACAAAAAAAAAAAAACAgAAAAAAAAA=</HashCode>
+      <FileName>Models\Incident.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Inspector" />
+      <Property Name="Kind" />
+      <Property Name="ReportedBy" />
+      <Property Name="Status" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Data.Models.IncidentAttachment">
+    <Position X="12.75" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAQAAgAAAAAAAAAAAAAAAABAAAAAAAACAAAAA=</HashCode>
+      <FileName>Models\IncidentAttachment.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SavedFile" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Data.Models.IncidentComplaint">
+    <Position X="11.75" Y="16.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAgQAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\IncidentComplaint.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Incident" />
+      <Property Name="Inspector" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Data.Models.IncidentReport">
+    <Position X="7.75" Y="5.25" Width="4.75" />
+    <TypeIdentifier>
+      <HashCode>RQAKAAAkQSJgwAAIACIAAAAAAAEAAAECAAAAAAAAAAA=</HashCode>
+      <FileName>Models\IncidentReport.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Incident" />
+      <Property Name="Inspector" />
+      <Property Name="Kind" />
+      <Property Name="Location" />
+      <Property Name="Status" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Data.Models.IncidentReportAttachment">
+    <Position X="12.75" Y="5.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAACAAAAAAAAAABAEAAAAAACAggAA=</HashCode>
+      <FileName>Models\IncidentReportAttachment.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IncidentReport" />
+      <Property Name="SavedFile" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Data.Models.IncidentReportAttribute">
+    <Position X="5.25" Y="2.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AgACAAAAAAAAAAAAAAAAAAQAAAAAAAAgAAAAAAAwgAA=</HashCode>
+      <FileName>Models\IncidentReportAttribute.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IncidentReport" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Data.Models.Inspector">
+    <Position X="9.25" Y="9.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AwgKBAAAACAAqAAAgGAEAAAAKAACBAQCAAAAIAAIAAE=</HashCode>
+      <FileName>Models\Inspector.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="CertificateFile" />
+      <Property Name="PhotoFile" />
+      <Property Name="ReviewStatus" />
+      <Property Name="Signature" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Data.Models.InspectorScore">
+    <Position X="1" Y="10.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QAACAAAkAAAAAAgAAAAAAAAAAAAAAAABAQAAAAAAAAA=</HashCode>
+      <FileName>Models\InspectorScore.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Inspector" />
+      <Property Name="Type" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Data.Models.InspectorSession">
+    <Position X="7" Y="10.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>QAACAAAgAAAAAAAAAAAQAAAAAgAAAAAAAAAIAAAAIAA=</HashCode>
+      <FileName>Models\InspectorSession.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Inspector" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Data.Models.Location">
+    <Position X="1.25" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAASAAAAAAAgAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Location.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ParentLocation" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Data.Models.MessageAttachment">
+    <Position X="1" Y="12.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACgAAAAAAAAAAAAAAAAAAAACAABAAAAAAAACAAAAA=</HashCode>
+      <FileName>Models\MessageAttachment.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="ReceiveMessage" />
+      <Property Name="SavedFile" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Data.Models.Petition">
+    <Position X="3.25" Y="7" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>QAAiAAAkAABAgAEAACAAAAAQECEAAAABAAAAAAAggAA=</HashCode>
+      <FileName>Models\Petition.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Status" />
+      <Property Name="Department" />
+      <Property Name="IncidentReport" />
+      <Property Name="Inspector" />
+      <Property Name="ParentPetition" />
+      <Property Name="Kind" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Data.Models.PetitionAttachment">
+    <Position X="5.5" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAAAAgCAAAAAAIAAABAEAAAAAACAAAAA=</HashCode>
+      <FileName>Models\PetitionAttachment.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="SavedFile" />
+      <Property Name="Petition" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Data.Models.PetitionAttribute">
+    <Position X="1" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AgACAAAAAAAAAAAAgAAAAAQAIAAAAAAgAAAAAAAQAAA=</HashCode>
+      <FileName>Models\PetitionAttribute.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Petition" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Data.Models.ReceiveMessage">
+    <Position X="7.75" Y="15.25" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>QAACAAAgAgAAAAAAgLEAAAAAIgAAAAAAAAAAEAAAAAA=</HashCode>
+      <FileName>Models\ReceiveMessage.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Inspector" />
+      <Property Name="Petition" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="Data.Models.SavedFile">
+    <Position X="12" Y="10.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAIAACAAAAAAEAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\SavedFile.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Type" />
+    </ShowAsAssociation>
+  </Class>
+  <Enum Name="Data.Models.IncidentKind">
+    <Position X="12.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAACAAAAAAAAAAAAgAAAAgAAAAQAAAAAAIAAAAA=</HashCode>
+      <FileName>Models\Incident.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Data.Models.IncidentStatus" Collapsed="true">
+    <Position X="12.25" Y="15.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEIAAAAEECAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Models\Incident.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Data.Models.IncidentReportKind">
+    <Position X="10.25" Y="2.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAACAACAAAAAAAAAAAAgAAAAgAAAAQAAAAAAIAAAAA=</HashCode>
+      <FileName>Models\IncidentReport.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Data.Models.IncidentReportStatus">
+    <Position X="8" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAQAAIAAAAEAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\IncidentReport.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Data.Models.InspectorStatus">
+    <Position X="12" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEQAAAAAAAAAAAAAAAQgAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Inspector.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Data.Models.ScoreType" Collapsed="true">
+    <Position X="5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAgAAEIAAAUAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\InspectorScore.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Data.Models.PetitionKind" Collapsed="true">
+    <Position X="5" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAACAAAAAAAAAAAAgAAAAgAAAAQAAAAAAIAAAAA=</HashCode>
+      <FileName>Models\Petition.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Data.Models.PetitionStatus">
+    <Position X="3.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAAQAAIAgAAAAAAABAQAAAAAAA=</HashCode>
+      <FileName>Models\Petition.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="Data.Models.SavedFileType" Collapsed="true">
+    <Position X="12.25" Y="14.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAEAAAAAAAAEEAAAAA=</HashCode>
+      <FileName>Models\SavedFile.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

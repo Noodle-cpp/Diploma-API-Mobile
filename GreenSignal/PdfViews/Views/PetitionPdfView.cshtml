@@ -1,0 +1,237 @@
+﻿@model PdfViews.Views.PetitionPdfViewModel
+@{
+    Layout = "_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Incident Report</title>
+</head>
+
+<body>
+    <div class="text">
+        <p>
+            <div>
+                <p align="center" style="margin: 0;">
+                    <h2 align="center" style="margin: 0;">@(Model.Petition.Department.Name.ToUpper())</h2>
+                </p> 
+                <hr style="margin: 0;">
+                <p align="center" style="margin: 0;">
+                    <label align="center" style="margin: 0;">@("территориальный орган или структурное подразделение")</label>
+                </p> <p align="center">
+                    <h2 align="center">@("Сообщение о нарушении №" + Model.IncidentReport.SerialNumber)</h2>
+                </p>
+                <p align="center">
+                    <label>@("по результатам рейдового осмотра, обследования")</label>
+                </p>
+                <p align="right" style="margin: 0;">
+                    <label style="text-decoration: underline">@Html.DisplayFor(model => model.IncidentReport.EndOfInspection)</label>
+                </p>
+
+                <p align="right" style="margin: 0;">
+                    <em align="right" style="margin: 0;">@("(время составления)")</em>
+                </p>
+
+                <p align="justify">
+                    <label align="justify">@("Настоящий  акт составлен в соответствии с Водным кодексом Российской Федерации  от 03.06.2006 № 74-ФЗ, Федеральным законом от 10.01.2002г. № 7-ФЗ «Об охране окружающей среды», Федеральным законом от 24.06.1998 № 89-ФЗ  «Об отходах производства и потребления», Закон РФ от 21.02.1992 № 2395-1 «О недрах»,  Федеральный закон от 26.12.2008 № 294-ФЗ «О защите прав юридических лиц и индивидуальных предпринимателей при осуществлении государственного контроля (надзора) и муниципального контроля», Постановлением Правительства Красноярского края от 28.11.2017 №  715-п «Об утверждении Положения о министерстве экологии  Красноярского края», Приказ Минприроды России от 12.07.2017 № 403 «Об утверждении порядка организации деятельности общественных инспекторов по охране окружающей среды»")</label>
+                </p>
+            </div>
+
+            <div>
+                <label>@("Мною, общественным инспектором:")</label>
+            </div>
+
+        <p></p>
+
+        <div>
+            <label align="justify">@(Model.IncidentReport.Inspector.FIO) </label>
+            <label align="justify">@(Model.IncidentReport.Inspector.Certificate) </label>
+            <label align="justify">@(Model.IncidentReport.Inspector.CertificateDate)</label>
+        </div>
+        <hr style="margin: 0;">
+
+        <div>
+            <p align="left">
+                <label>@("Выявлено нижеследующее:")</label>
+            </p>
+        </div>
+        <p align="justify" style="text-decoration: underline">
+            <label align="justify">@($"{Model.IncidentReport.StartOfInspection} по адресу {Model.IncidentReport.Address}. Было зафиксировано нарушение: ")</label>
+            <label align="justify">@Html.DisplayFor(model => model.IncidentReport.Kind).</label>
+            <label align="justify">@Html.DisplayFor(model => model.IncidentReport.Description)</label>
+
+            <label align="justify">@($". В ходе проверки было выявлено: ")</label>
+
+                @foreach (var attribute in Model.IncidentReport.IncidentReportAttributes)
+                {
+                    @if (!attribute.Name.Contains("GEO"))
+                    {
+                        <label align="justify">@(attribute.Title) - </label>
+
+                        if (!String.IsNullOrEmpty(attribute.StringValue))
+                        {
+                        <label align="justify">@(attribute.StringValue)@(attribute != Model.IncidentReport.IncidentReportAttributes.Last() ? ";" : ".")</label>
+                        }
+                        else
+                        {
+                            if (attribute.BoolValue != null)
+                            {
+                                string boolStr = attribute.BoolValue == true ? "Присутствует" : "Отсутствует";
+                            <label align="justify">@(boolStr)@(attribute != Model.IncidentReport.IncidentReportAttributes.Last() ? ";" : ".")</label>
+                            }
+                            else
+                            {
+                            <label align="justify">@(attribute.NumberValue)@(attribute != Model.IncidentReport.IncidentReportAttributes.Last() ? ";" : ".")</label>
+                            }
+                        }
+                    }
+                }
+        </p>
+
+        <p align="justify" style="text-decoration: underline">
+                @foreach (var attribute in Model.Petition.Attributes)
+                {
+                <label align="justify">@(attribute.Title)@(attribute.BoolValue != null ? attribute != Model.Petition.Attributes.Last() ? ";" : "." : ":")</label>
+
+                    if (!String.IsNullOrEmpty(attribute.StringValue))
+                    {
+                    <label align="justify">@(attribute.StringValue)@(attribute != Model.Petition.Attributes.Last() ? ";" : ".")</label>
+                    }
+                    else if (attribute.BoolValue == null)
+                    {
+                    <label align="justify">@(attribute.NumberValue)@(attribute != Model.Petition.Attributes.Last() ? ";" : ".")</label>
+                    }
+                }
+        </p>
+            
+        <div>
+            <p align="right">
+                <h2>@Html.DisplayNameFor(model => model.IncidentReport.IncidentReportAttachements): </h2>
+            </p>
+        </div>
+
+            @if ((Model.IncidentReport.IncidentReportAttributes.Any(x => x.Name.Contains("GEO"))))
+            {
+            <div>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+                <div id="googleMap" style="height:400px;width:100%;"></div>
+                <script>
+                    function myMap() {
+
+
+                        var myCenter = new google.maps.LatLng(@(Model.IncidentReport.Lat.ToString().Replace(",", ".")), @(Model.IncidentReport.Lng.ToString().Replace(",", ".")));
+                        var mapProp = { center: myCenter, zoom: 14, scrollwheel: false, draggable: false, mapTypeId: google.maps.MapTypeId.ROADMAP };
+                        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                        var marker = new google.maps.Marker({ position: myCenter });
+                        marker.setMap(map);
+
+                        var points = [
+                            {
+                                lat: parseFloat(@(Model.IncidentReport.IncidentReportAttributes.FirstOrDefault(x => x.Name.Contains("GEO_1_LAT")).NumberValue.Value.ToString().Replace(",", "."))),
+                                lng: parseFloat(@(Model.IncidentReport.IncidentReportAttributes.FirstOrDefault(x => x.Name.Contains("GEO_1_LNG")).NumberValue.Value.ToString().Replace(",", ".")))
+                            },
+                            {
+                                lat: parseFloat(@(Model.IncidentReport.IncidentReportAttributes.FirstOrDefault(x => x.Name.Contains("GEO_2_LAT")).NumberValue.Value.ToString().Replace(",", "."))),
+                                lng: parseFloat(@(Model.IncidentReport.IncidentReportAttributes.FirstOrDefault(x => x.Name.Contains("GEO_2_LNG")).NumberValue.Value.ToString().Replace(",", ".")))
+                            },
+                            {
+                                lat: parseFloat(@(Model.IncidentReport.IncidentReportAttributes.FirstOrDefault(x => x.Name.Contains("GEO_3_LAT")).NumberValue.Value.ToString().Replace(",", "."))),
+                                lng: parseFloat(@(Model.IncidentReport.IncidentReportAttributes.FirstOrDefault(x => x.Name.Contains("GEO_3_LNG")).NumberValue.Value.ToString().Replace(",", ".")))
+                            },
+                            {
+                                lat: parseFloat(@(Model.IncidentReport.IncidentReportAttributes.FirstOrDefault(x => x.Name.Contains("GEO_4_LAT")).NumberValue.Value.ToString().Replace(",", "."))),
+                                lng: parseFloat(@(Model.IncidentReport.IncidentReportAttributes.FirstOrDefault(x => x.Name.Contains("GEO_4_LNG")).NumberValue.Value.ToString().Replace(",", ".")))
+                            }
+                        ];
+
+
+
+                        var polygon = new google.maps.Polygon({
+                            paths: points,
+                            strokeColor: '#FF0000',
+                            fillColor: '#FF0000',
+                            strokeWeight: 2
+                        });
+                        polygon.setMap(map);
+                    }
+                </script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCINS2dyuBipK8MZzOQnzyKdrS2I1_b5I4&callback=myMap"></script>
+            </div>
+            }
+            else
+            {
+            <div>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+                <div id="googleMap" style="height:300px;width:100%;"></div>
+                <script>
+                    function myMap() {
+
+
+                        var myCenter = new google.maps.LatLng(@(Model.IncidentReport.Lat.ToString().Replace(",", ".")), @(Model.IncidentReport.Lng.ToString().Replace(",", ".")));
+                        var mapProp = { center: myCenter, zoom: 16, scrollwheel: false, draggable: false, mapTypeId: google.maps.MapTypeId.ROADMAP };
+                        var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+                        var marker = new google.maps.Marker({ position: myCenter });
+                        marker.setMap(map);
+
+                    }
+                </script>
+                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCINS2dyuBipK8MZzOQnzyKdrS2I1_b5I4&callback=myMap"></script>
+            </div>
+            }
+        <p>
+            <span>
+                <label style="font-weight: bold">@Html.DisplayNameFor(model => model.IncidentReport.IncidentReportAttachements.First().Description): </label>
+                <label>@("Местоположение")</label>
+            </span>
+        </p>
+        <p>
+            <label style="font-weight: bold">
+                    @(Model.IncidentReport.EndOfInspection)
+            </label>
+        </p>
+
+        <div class="text">
+                @if (Model.IncidentReport.IncidentReportAttachements != null)
+                {
+                    @foreach (var img in Model.IncidentReport.IncidentReportAttachements)
+                    {
+                    <p style="justify-content: center; align-items: center; display: flex;">
+                        <img style="max-height: 500px; width: auto; max-width: 100%;" src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(img.SavedFileBytes))" class="responsive" />
+                    </p>
+                    <p>
+                        <span>
+                            <label style="font-weight: bold">@Html.DisplayNameFor(model => model.IncidentReport.IncidentReportAttachements.First().Description): </label>
+                            <label>@(img.Description)</label>
+                        </span>
+                    </p>
+                    <p>
+                        <label style="font-weight: bold">
+                                @(img.ManualDate)
+                        </label>
+                    </p>
+                    }
+                }
+        </div>
+
+        <div>
+            <p align="justify">
+                <label>@("(при наличии фотоматериалов: указанием даты, краткое описание правонарушения, ФИО общественного инспектора, дата производства съемки должна отображаться на фотографии, при наличии схемы, чертежа:  указанием даты, времени, места, краткое описание правонарушения, привязка к местности с указанием сторон света, площадь загрязнения, указание на наименование, марку прибора измерения, копия акта отбора проб при наличии)")</label>
+            </p>
+        </div>
+
+        <div>
+            <label align="left">@("Сообщение о нарушении составил(а) ")</label>
+            <label>@(Model.IncidentReport.Inspector.FIO)</label>
+            <img src="@String.Format("data:image/png;base64,{0}", Convert.ToBase64String(Model.IncidentReport.Inspector.SavedFileBytes))" class="responsive" style="width: 10%; height: auto" />
+        </div>
+        <hr style="margin: 0;" />
+        <p align="right" style="margin: 0;">
+            <em align="right" style="margin: 0;">@("(подпись)")</em>
+        </p>
+</body>
+
+</html>
